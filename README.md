@@ -91,14 +91,14 @@ endmodule
 # Full Subtractor
 ```
 module fs(a,b,bin,d,bout);
-input a,b,bin; 
+input a,b,bin;
 output d,bout;
 wire w1,w2,w3;
-xor g1(w1,b,bin; 
-xor g2(d,w1,a);
-and g3(w2,a,~w1);
-and g4(w3,~b,bin);
-or g5(bout,w2,w3);
+xor(w1,a,b);
+xor(d,w1,bin);
+and(w2,~a,b);
+and(w3,~w1,bin);
+or(bout,w3,w2);
 endmodule
 ```
 # 8 bit Ripple Carry Adder
@@ -154,7 +154,7 @@ OUTPUT:
 # Full Adder
 ![image](https://github.com/Binnu-123/VLSI-LAB-EXP-1/assets/161333609/92f26ec4-58ce-46ea-816f-9e468d2685ac)
 # Full Subtractor
-![image](https://github.com/Binnu-123/VLSI-LAB-EXP-1/assets/161333609/752b404d-0c8d-4c9d-a921-9bdbcaf3e8db)
+![image](https://github.com/Binnu-123/VLSI-LAB-EXP-1/assets/161333609/e1d4658a-4be0-4179-a9ec-1473fdee1873)
 # 8 Bit Ripple Carry Adder
 ![image](https://github.com/Binnu-123/VLSI-LAB-EXP-1/assets/161333609/b7dd8aec-fbf7-40a2-a94a-76b10bc3fb31)
 
