@@ -68,16 +68,16 @@ endmodule
 ```
 # Half Subtractor
 ```
-module halfsubtractor(a,b,diff,borrow);
+module ha(a,b,sum,carry);
 input a,b;
-output diff,borrow;
-xor g1(diff,a,b);
-and g2(borrow,~a,b);
+output sum,carry;
+xor g1(sum,a,b);
+and g2(carry,a,b);
 endmodule
 ```
 # Full Adder
 ```
-module fadd(a,b,c,sum,carry);
+module fa(a,b,c,sum,carry);
 input a,b,c;
 output sum,carry;
 wire w1,w2,w3;
@@ -85,49 +85,39 @@ xor g1(w1,a,b);
 and g2(w2,a,b);
 xor g3(sum,w1,c);
 and g4(w3,w1,c);
-or g5(carry,w3,w2);
+or g5(carry,w2,w3);
 endmodule
+
 ```
 # Full Subtractor
 ```
-module fs(a,b,bin,d,bout);
+module full_sub(a,b,bin,diff,borrow);
 input a,b,bin;
-output d,bout;
+output diff,borrow;
 wire w1,w2,w3;
-xor(w1,a,b);
-xor(d,w1,bin);
-and(w2,~a,b);
-and(w3,~w1,bin);
-or(bout,w3,w2);
+xor g1(w1,a,b);
+and g2(w2,~a,b);
+xor g3(diff,w1,bin);
+or g4(borrow,w2,w3);
+and g5(w3,~w1,bin);
 endmodule
 ```
 # 8 bit Ripple Carry Adder
 ```
-module rippe_adder(S,Cout,X,Y,Cin);
-input [7:0] X,Y;
-input Cin;
-output [7:0] S;
-output Cout;
+module rca(a,b,c,sum,carry);
+input [7:0]a,b;
+input c;
+output [7:0]sum;
+output carry;
 wire w1,w2,w3,w4,w5,w6,w7;
-fulladder u1(S[0],w1,X[0],Y[0],Cin);
-fulladder u2(S[1],w2,X[1],Y[1],w1);
-fulladder u3(S[2],w3,X[2],Y[2],w2);
-fulladder u4(S[3],w4,X[3],Y[3],w3);
-fulladder u5(S[4],w5,X[4],Y[4],w4);
-fulladder u6(S[5],w6,X[5],Y[5],w5);
-fulladder u7(S[6],w7,X[6],Y[6],w6);
-fulladder u8(S[7],Cout,X[7],Y[7],w7);
-endmodule
-
-module fulladder(S,CO,X,Y,Ci);
-input X,Y,Ci;
-output S,CO;
-wire w1,w2,w3;
-xor G1(w1,X,Y);
-xor G2(S,w1,Ci);
-and G3(w2,X,Ci);
-and G4(w3,X,Y);
-or G5(CO,w3,w3);
+fa fa1(a[0],b[0],c,sum[0],w1);
+fa fa2(a[1],b[1],w1,sum[1],w2);
+fa fa3(a[2],b[2],w2,sum[2],w3);
+fa fa4(a[3],b[3],w3,sum[3],w4);
+fa fa5(a[4],b[4],w4,sum[4],w5);
+fa fa6(a[5],b[5],w5,sum[5],w6);
+fa fa7(a[6],b[6],w6,sum[6],w7);
+fa fa8(a[7],b[7],w7,sum[7],carry);
 endmodule
 ```
 
