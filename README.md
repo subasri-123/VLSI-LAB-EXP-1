@@ -40,8 +40,32 @@ Full Subtractor:
 
 
 VERILOG CODE:
-
-----Type Verilog Code
+# LOGIC GATES
+```
+module logicgate (a,b,andgate,orgate,xorgate,nandgate,norgate,xnorgate,notgate);
+input a,b;  
+output andgate,orgate,xorgate,nandgate,norgate,xnorgate,notgate;
+and(andgate,a,b);
+or(orgate,a,b);
+xor(xorgate,a,b);
+nand(nandgate,a,b); 
+nor(norgate,a,b);
+xnor(xnorgate,a,b);
+not(notgate,a);
+endmodule
+```
+##     HALF ADDER
+```
+module ha(a,b,sum,carry);
+input a,b;
+output sum,carry;
+endmodule
+module multi_2(a,b,p,carry);
+input [1:0]a,b;
+output [2:0]p;
+output carry;
+endmodule
+```
 
 OUTPUT:
 
